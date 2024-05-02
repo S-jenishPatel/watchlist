@@ -10,3 +10,7 @@ export const signupSchema = z.object({
   email: z.string().email("Valid Email is required"),
   password: z.string().min(6, "Password must be atleast 6 characters"),
 });
+
+export const verifySchema = z.object({
+  verifyCode: z.string(),
+});
