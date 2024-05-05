@@ -6,11 +6,18 @@ import User from "@/models/user.model";
 import bcrypt from "bcryptjs";
 import sendEmail from "@/lib/sendEmail";
 
-dbConnect();
-
 export async function POST(request: NextRequest) {
-  const { username, email, password }: z.infer<typeof signupSchema> =
-    await request.json();
+  await dbConnect();
+
+  const { data } = await request.json();
+  console.log(data);
+
+  const validatedFields = signupSchema.safeParse(data);
+  if (!validatedFields.success) {
+    return Response.json({ message: "Invalid fields" }, { status: 400 });
+  }
+
+  const { username, email, password } = validatedFields.data;
 
   try {
     const existingUsername = await User.findOne({ username, isVerified: true });
@@ -26,7 +33,7 @@ export async function POST(request: NextRequest) {
     });
 
     if (existingUserByEmail) {
-      if (existingUserByEmail && existingUserByEmail.isVerified) {
+      if (existingUserByEmail.isVerified) {
         return Response.json(
           { message: "Email already exists" },
           { status: 409 }

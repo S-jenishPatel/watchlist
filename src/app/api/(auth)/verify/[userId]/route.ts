@@ -4,14 +4,24 @@ import { verifySchema } from "@/schemas";
 import { NextRequest } from "next/server";
 import * as z from "zod";
 
-dbConnect();
-
 export async function PATCH(
   request: NextRequest,
   { params }: { params: { userId: string } }
 ) {
+  await dbConnect();
+
   const { userId } = params;
-  const { verifyCode }: z.infer<typeof verifySchema> = await request.json();
+  const { data } = await request.json();
+
+  const validatedFields = verifySchema.safeParse(data);
+  if (!validatedFields.success) {
+    return Response.json(
+      { message: "Invalid Verification code" },
+      { status: 400 }
+    );
+  }
+
+  const { verifyCode } = validatedFields.data;
 
   try {
     const user = await User.findById(userId);

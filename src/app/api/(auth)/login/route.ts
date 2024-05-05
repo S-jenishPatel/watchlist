@@ -4,11 +4,21 @@ import * as z from "zod";
 import dbConnect from "@/lib/dbConnection";
 import User from "@/models/user.model";
 import bcrypt from "bcryptjs";
+import { signIn } from "@/auth";
+import { AFTER_LOGIN_ROUTE, publicRoutes } from "@/routes";
 
-dbConnect();
+export async function PATCH(request: NextRequest) {
+  await dbConnect();
 
-export async function GET(request: NextRequest) {
-  const { email, password }: z.infer<typeof loginSchema> = await request.json();
+  const { data } = await request.json();
+  console.log(data);
+
+  const validatedFields = loginSchema.safeParse(data);
+  if (!validatedFields.success) {
+    return Response.json({ message: "Invalid Credentials" }, { status: 400 });
+  }
+
+  const { email, password } = validatedFields.data;
 
   try {
     const user = await User.findOne({ email });
@@ -34,6 +44,8 @@ export async function GET(request: NextRequest) {
         { status: 403 }
       );
     }
+
+    signIn("credentials", { email, password, redirectTo: AFTER_LOGIN_ROUTE });
 
     return Response.json(
       { message: "User logged in successfully" },

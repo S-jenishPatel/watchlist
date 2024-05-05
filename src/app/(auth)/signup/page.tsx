@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import Axios from "axios";
 
 function SignupPage() {
   const form = useForm<z.infer<typeof signupSchema>>({
@@ -32,7 +33,11 @@ function SignupPage() {
     formState: { isSubmitting },
   } = form;
 
-  const onSubmit = (data: z.infer<typeof signupSchema>) => {};
+  const onSubmit = (data: z.infer<typeof signupSchema>) => {
+    Axios.post("/api/signup", data)
+      .then((res) => {})
+      .catch((error) => {});
+  };
 
   return (
     <div className="h-screen bg-primary flex justify-center items-center">

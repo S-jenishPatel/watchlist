@@ -17,7 +17,8 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { FaGoogle, FaGithub } from "react-icons/fa";
+import Axios from "axios";
+import { useToast } from "@/components/ui/use-toast";
 
 function LoginPage() {
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -29,10 +30,24 @@ function LoginPage() {
   });
   const {
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = form;
 
-  const onSubmit = (data: z.infer<typeof loginSchema>) => {};
+  const { toast } = useToast();
+
+  const onSubmit = (data: z.infer<typeof loginSchema>) => {
+    console.log(isSubmitting);
+    console.log(data);
+    Axios.patch("/api/login", { data })
+      .then((res) => {
+        console.log(res);
+        toast({ title: res.data.message });
+      })
+      .catch((error) => {
+        console.log(error);
+        toast({ title: error.response.data.message, variant: "destructive" });
+      });
+  };
 
   return (
     <div className="h-screen bg-primary flex justify-center items-center">
