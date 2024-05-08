@@ -4,6 +4,7 @@ import {
   authRoutes,
   nextAuthRoutes,
   publicRoutes,
+  verifyRoutes,
 } from "@/routes";
 
 export default auth((req) => {
@@ -12,10 +13,21 @@ export default auth((req) => {
 
   const path = req.nextUrl.pathname;
 
+  var isVerifyRoute = false;
+
   if (path.startsWith(nextAuthRoutes)) return;
 
   if (authRoutes.includes(path) && isLoggedIn) {
     return Response.redirect(new URL(AFTER_LOGIN_ROUTE, req.nextUrl));
+  }
+
+  verifyRoutes.forEach((route, index) => {
+    if (path.startsWith(route)) {
+      isVerifyRoute = true;
+    }
+  });
+  if (isVerifyRoute) {
+    return;
   }
 
   if (!publicRoutes.includes(path) && !isLoggedIn) {

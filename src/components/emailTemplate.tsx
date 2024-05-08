@@ -11,9 +11,15 @@ function EmailTemplate({ username, userId, verifyCode }: EmailTemplateProps) {
   return (
     <div>
       <h2 className="text-5xl text-black">Hello {username}</h2>
-      <br />
-      <p>This is your verification code below.</p>
-      <span className="block text-7xl font-bold tracking-wider">
+      <p style={{ fontSize: "16px" }}>Your verification code is:</p>
+      <span
+        style={{
+          display: "block",
+          fontSize: "24px",
+          letterSpacing: "2px",
+          fontWeight: "bold",
+        }}
+      >
         {verifyCode}
       </span>
       <br />
@@ -24,7 +30,16 @@ function EmailTemplate({ username, userId, verifyCode }: EmailTemplateProps) {
       <br />
       <a href={verifyEmailLink}>{verifyEmailLink}</a>
       <hr />
-      <p className="text-right">| From Watchlist Team.</p>
+      <br />
+      <p
+        style={{
+          textAlign: "right",
+          borderLeft: "2px solid white",
+          paddingInline: "8px",
+        }}
+      >
+        From Watchlist Team.
+      </p>
     </div>
   );
 }

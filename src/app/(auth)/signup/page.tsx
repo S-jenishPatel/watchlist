@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -30,13 +31,23 @@ function SignupPage() {
   });
   const {
     handleSubmit,
+    reset,
     formState: { isSubmitting },
   } = form;
 
-  const onSubmit = (data: z.infer<typeof signupSchema>) => {
-    Axios.post("/api/signup", data)
-      .then((res) => {})
-      .catch((error) => {});
+  const { toast } = useToast();
+
+  const onSubmit = async (data: z.infer<typeof signupSchema>) => {
+    await Axios.post("/api/signup", data)
+      .then((res) => {
+        console.log(res);
+        toast({ title: res.data.message });
+        reset();
+      })
+      .catch((error) => {
+        console.log(error);
+        toast({ title: error.response.data.message, variant: "destructive" });
+      });
   };
 
   return (

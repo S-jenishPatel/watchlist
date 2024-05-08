@@ -9,10 +9,9 @@ import sendEmail from "@/lib/sendEmail";
 export async function POST(request: NextRequest) {
   await dbConnect();
 
-  const { data } = await request.json();
-  console.log(data);
+  const body = await request.json();
 
-  const validatedFields = signupSchema.safeParse(data);
+  const validatedFields = signupSchema.safeParse(body);
   if (!validatedFields.success) {
     return Response.json({ message: "Invalid fields" }, { status: 400 });
   }
@@ -89,7 +88,7 @@ export async function POST(request: NextRequest) {
         email,
         verifyCode,
       });
-      console.log(emailResponse);
+      console.log("Email Response", emailResponse);
     }
 
     return Response.json(

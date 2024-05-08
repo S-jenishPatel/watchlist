@@ -10,10 +10,9 @@ import { AFTER_LOGIN_ROUTE, publicRoutes } from "@/routes";
 export async function PATCH(request: NextRequest) {
   await dbConnect();
 
-  const { data } = await request.json();
-  console.log(data);
+  const body = await request.json();
 
-  const validatedFields = loginSchema.safeParse(data);
+  const validatedFields = loginSchema.safeParse(body);
   if (!validatedFields.success) {
     return Response.json({ message: "Invalid Credentials" }, { status: 400 });
   }

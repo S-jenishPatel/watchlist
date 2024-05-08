@@ -13,12 +13,12 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Axios from "axios";
-import { useToast } from "@/components/ui/use-toast";
 
 function LoginPage() {
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -30,18 +30,18 @@ function LoginPage() {
   });
   const {
     handleSubmit,
-    formState: { isSubmitting, errors },
+    reset,
+    formState: { errors, isSubmitting },
   } = form;
 
   const { toast } = useToast();
 
-  const onSubmit = (data: z.infer<typeof loginSchema>) => {
-    console.log(isSubmitting);
-    console.log(data);
-    Axios.patch("/api/login", { data })
+  const onSubmit = async (data: z.infer<typeof loginSchema>) => {
+    await Axios.patch("/api/login", data)
       .then((res) => {
         console.log(res);
         toast({ title: res.data.message });
+        reset();
       })
       .catch((error) => {
         console.log(error);
