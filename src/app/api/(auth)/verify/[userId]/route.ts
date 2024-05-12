@@ -11,9 +11,9 @@ export async function PATCH(
   await dbConnect();
 
   const { userId } = params;
-  const { data } = await request.json();
+  const body = await request.json();
 
-  const validatedFields = verifySchema.safeParse(data);
+  const validatedFields = verifySchema.safeParse(body);
   if (!validatedFields.success) {
     return Response.json(
       { message: "Invalid Verification code" },

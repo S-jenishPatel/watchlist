@@ -61,7 +61,7 @@ function VerifyUserPage({ params }: { params: { userId: string } }) {
 
   return (
     <>
-      <div className="flex gap-2  pl-4 py-4 items-center border-b-2">
+      <div className="flex gap-2 pl-4 py-4 items-center border-b-2">
         <Image src={logo} alt="Wishlist logo" className="w-16 rounded-full" />
         <span className={`text-5xl  font-600 ${oswald.className}`}>
           Watchlist

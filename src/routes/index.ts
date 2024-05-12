@@ -9,6 +9,7 @@ export const publicRoutes = [
   "/api/login",
   "/api/signup",
   "/user",
+  "/user/home",
 ];
 /**
  * next auth.js api routes that should be always available to user
