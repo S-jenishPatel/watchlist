@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { FaGithub, FaGoogle } from "react-icons/fa";
 
-type authCardProps = {
+type TAuthCardProps = {
   children: React.ReactNode;
   header: string;
   footerTitle: string;
@@ -17,7 +17,7 @@ function AuthCard({
   footerTitle,
   footerURL,
   footerText,
-}: authCardProps) {
+}: TAuthCardProps) {
   return (
     <div className="bg-background w-96 flex flex-col gap-1 p-3 items-center rounded shadow-slate-300 shadow-md">
       <h2 className="text-primary text-2xl font-medium">{header}</h2>

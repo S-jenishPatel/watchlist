@@ -1,12 +1,10 @@
-import React from "react";
-
-type EmailTemplateProps = {
+type TEmailTemplateProps = {
   username: string;
   userId: string;
   verifyCode: string;
 };
 
-function EmailTemplate({ username, userId, verifyCode }: EmailTemplateProps) {
+function EmailTemplate({ username, userId, verifyCode }: TEmailTemplateProps) {
   const verifyEmailLink = process.env.DOMAIN + "/verify/" + userId.toString();
   return (
     <div>

@@ -14,3 +14,10 @@ export const signupSchema = z.object({
 export const verifySchema = z.object({
   verifyCode: z.string().min(6, "Verification Code must be 6 Numbers"),
 });
+
+export const movieSchema = z.object({
+  id: z.string({ required_error: "Movie IMDB Id is required" }),
+  title: z.string({ required_error: "Movie Title is required" }),
+  image: z.string(),
+  releaseYear: z.number(),
+});

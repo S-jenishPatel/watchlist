@@ -8,7 +8,7 @@ export default function UserLayout({
   return (
     <>
       <Navbar />
-      <section>{children}</section>
+      <section className="px-28 max-sm:px-2">{children}</section>
     </>
   );
 }
