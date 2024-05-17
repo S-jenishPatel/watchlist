@@ -8,12 +8,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useToast } from "@/components/ui/use-toast";
+
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import Axios from "axios";
 
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 
-import Image from "next/image";
-import { useState } from "react";
+import getUser from "@/lib/getUser";
+import { Session } from "next-auth";
 
 type TMovieCardProps = {
   id: string;
@@ -23,9 +28,27 @@ type TMovieCardProps = {
 
 function MovieCard({ id, title, image }: TMovieCardProps) {
   const [addToWatchlist, setAddToWatchlist] = useState(false);
+  const [addingToWatchlist, setAddingToWatchlist] = useState(false);
 
-  const onAddToWatchlist = () => {
-    setAddToWatchlist((prev) => !prev);
+  const { toast } = useToast();
+
+  const onAddToWatchlist = async () => {
+    setAddingToWatchlist(true);
+
+    const result = await Axios.post("/api/user/watchlist", {
+      movieId: id,
+    })
+      .then((res) => {
+        setAddToWatchlist((prev) => !prev);
+        toast({ title: res.data.message });
+      })
+      .catch((error) => {
+        console.log(error);
+        toast({ title: error.response.data.message, variant: "destructive" });
+      })
+      .finally(() => {
+        setAddingToWatchlist(false);
+      });
   };
   return (
     <Card className="hover:shadow">
@@ -43,9 +66,8 @@ function MovieCard({ id, title, image }: TMovieCardProps) {
         <Button
           variant={"outline"}
           size={"icon"}
-          onClick={() => {
-            onAddToWatchlist();
-          }}
+          disabled={addingToWatchlist}
+          onClick={onAddToWatchlist}
         >
           {addToWatchlist ? (
             <FaHeart color="red" size={16} />

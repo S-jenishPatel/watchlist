@@ -1,5 +1,6 @@
 import MovieCardList from "@/components/movieCardList";
 import { TMovieCardListProps } from "@/components/movieCardList";
+import getUser from "@/lib/getUser";
 
 const moviesApiData: TMovieCardListProps[] = [
   {
@@ -33,7 +34,9 @@ const moviesApiData: TMovieCardListProps[] = [
   },
 ];
 
-function HomePage() {
+async function HomePage() {
+  const session = await getUser();
+  console.log(session);
   return (
     <>
       {moviesApiData.map((movieData, index) => (

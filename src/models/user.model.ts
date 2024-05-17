@@ -43,7 +43,7 @@ const userSchema = new mongoose.Schema<TUser>(
 );
 
 const User =
-  (mongoose.models.User as mongoose.Model<TUser>) ||
+  (mongoose.models?.User as mongoose.Model<TUser>) ||
   mongoose.model<TUser>("User", userSchema);
 
 export default User;

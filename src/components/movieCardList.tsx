@@ -1,8 +1,10 @@
-import { ChevronRight } from "lucide-react";
 import MovieCard from "@/components/movieCard";
+
+import { ChevronRight } from "lucide-react";
 import Axios from "axios";
-import { movieSchema } from "@/schemas";
 import * as z from "zod";
+
+import { movieSchema } from "@/schemas";
 
 export type TMovieCardListProps = {
   listTitle: string;
@@ -46,8 +48,6 @@ async function MovieCardList({ listTitle, url, params }: TMovieCardListProps) {
     .catch((e) => {
       console.log(e);
     });
-
-  console.log(movies!);
   return (
     <div>
       <h3 className="text-2xl font-medium my-4">

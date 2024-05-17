@@ -27,13 +27,14 @@ function EmailTemplate({ username, userId, verifyCode }: TEmailTemplateProps) {
       </p>
       <br />
       <a href={verifyEmailLink}>{verifyEmailLink}</a>
-      <hr />
       <br />
+      <hr />
       <p
         style={{
           textAlign: "right",
           borderLeft: "2px solid white",
           paddingInline: "8px",
+          display: "inline",
         }}
       >
         From Watchlist Team.

@@ -15,6 +15,11 @@ export const verifySchema = z.object({
   verifyCode: z.string().min(6, "Verification Code must be 6 Numbers"),
 });
 
+export const addToWatchlistSchema = z.object({
+  userId: z.string(),
+  movieId: z.string(),
+});
+
 export const movieSchema = z.object({
   id: z.string({ required_error: "Movie IMDB Id is required" }),
   title: z.string({ required_error: "Movie Title is required" }),

@@ -45,7 +45,10 @@ function LoginPage() {
       })
       .catch((error) => {
         console.log(error);
-        toast({ title: error.response.data.message, variant: "destructive" });
+        toast({
+          title: error.response.data.message,
+          variant: "destructive",
+        });
       });
   };
 
