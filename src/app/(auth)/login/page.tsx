@@ -19,6 +19,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Axios from "axios";
+import loginUser from "@/lib/loginUser";
 
 function LoginPage() {
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -38,10 +39,11 @@ function LoginPage() {
 
   const onSubmit = async (data: z.infer<typeof loginSchema>) => {
     await Axios.patch("/api/login", data)
-      .then((res) => {
-        console.log(res);
+      .then(async (res) => {
         toast({ title: res.data.message });
         reset();
+
+        await loginUser({ data });
       })
       .catch((error) => {
         console.log(error);

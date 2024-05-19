@@ -46,7 +46,6 @@ function VerifyUserPage({ params }: { params: { userId: string } }) {
   const onSubmit = async (data: z.infer<typeof verifySchema>) => {
     await Axios.patch("/api/verify/" + userId.toString(), data)
       .then((res) => {
-        console.log(res);
         toast({ title: res.data.message });
         reset();
       })

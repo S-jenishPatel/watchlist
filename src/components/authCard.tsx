@@ -1,7 +1,10 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+
 import { FaGithub, FaGoogle } from "react-icons/fa";
+import Link from "next/link";
+
+import loginUser from "@/lib/loginUser";
 
 type TAuthCardProps = {
   children: React.ReactNode;
@@ -23,10 +26,20 @@ function AuthCard({
       <h2 className="text-primary text-2xl font-medium">{header}</h2>
       {children}
       <div className="flex gap-3 justify-center w-full mt-3">
-        <Button className="w-2/5">
+        <Button
+          className="w-2/5"
+          onClick={async () => {
+            await loginUser({ provider: "google" });
+          }}
+        >
           <FaGoogle className="size-5" /> <p className="ml-3">Google</p>
         </Button>
-        <Button className="w-2/5">
+        <Button
+          className="w-2/5"
+          onClick={async () => {
+            await loginUser({ provider: "github" });
+          }}
+        >
           <FaGithub className="size-6" /> <p className="ml-3">Github</p>
         </Button>
       </div>

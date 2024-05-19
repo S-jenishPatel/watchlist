@@ -1,11 +1,8 @@
 import { NextRequest } from "next/server";
 import { loginSchema } from "@/schemas";
-import * as z from "zod";
 import dbConnect from "@/lib/dbConnection";
 import User from "@/models/user.model";
 import bcrypt from "bcryptjs";
-import { signIn } from "@/auth";
-import { AFTER_LOGIN_ROUTE, publicRoutes } from "@/routes";
 
 export async function PATCH(request: NextRequest) {
   await dbConnect();
@@ -43,8 +40,6 @@ export async function PATCH(request: NextRequest) {
         { status: 403 }
       );
     }
-
-    signIn("credentials", { email, password, redirectTo: AFTER_LOGIN_ROUTE });
 
     return Response.json(
       { message: "User logged in successfully" },

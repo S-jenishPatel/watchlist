@@ -27,8 +27,8 @@ export const verifyRoutes = ["/verify", "/api/verify"];
 /**
  * Default route to redirect to after user login
  */
-export const AFTER_LOGIN_ROUTE = "/user";
+export const AFTER_LOGIN_ROUTE = process.env.DOMAIN + "/user";
 /**
  * Default route to redirect to after user logout
  */
-export const AFTER_LOGOUT_ROUTE = "/login";
+export const AFTER_LOGOUT_ROUTE = process.env.DOMAIN + "/login";

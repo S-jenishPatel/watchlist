@@ -40,7 +40,6 @@ function SignupPage() {
   const onSubmit = async (data: z.infer<typeof signupSchema>) => {
     await Axios.post("/api/signup", data)
       .then((res) => {
-        console.log(res);
         toast({ title: res.data.message });
         reset();
       })
