@@ -10,7 +10,7 @@ function UserPage() {
     (async function () {
       const session = await getUser();
 
-      console.log(session);
+      console.log("User Page Session:", session);
     })();
   }, []);
   return (

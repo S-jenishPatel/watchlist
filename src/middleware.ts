@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import {
   AFTER_LOGIN_ROUTE,
+  AFTER_LOGOUT_ROUTE,
   authRoutes,
   nextAuthRoutes,
   publicRoutes,
@@ -31,7 +32,7 @@ export default auth((req) => {
   }
 
   if (!publicRoutes.includes(path) && !isLoggedIn) {
-    return Response.redirect(new URL("/login", req.nextUrl));
+    return Response.redirect(new URL(AFTER_LOGOUT_ROUTE, req.nextUrl));
   }
 
   return;

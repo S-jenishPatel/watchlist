@@ -8,9 +8,6 @@ export const publicRoutes = [
   "/verify",
   "/api/login",
   "/api/signup",
-  "/user",
-  "/user/home",
-  "/api/user/watchlist",
 ];
 /**
  * next auth.js api routes that should be always available to user
@@ -21,13 +18,13 @@ export const nextAuthRoutes = "/api/auth";
  */
 export const authRoutes = ["/login", "/signup", "/api/login", "/api/signup"];
 /**
- * Verify Dynamic routes that are publicly available
+ * Dynamic Verify routes that are publicly available
  */
 export const verifyRoutes = ["/verify", "/api/verify"];
 /**
  * Default route to redirect to after user login
  */
-export const AFTER_LOGIN_ROUTE = process.env.DOMAIN + "/user";
+export const AFTER_LOGIN_ROUTE = process.env.DOMAIN + "/user/home";
 /**
  * Default route to redirect to after user logout
  */

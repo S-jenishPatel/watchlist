@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
 
     const existingMovieIndex = user.watchlist.indexOf(movieId);
 
-    if (existingMovieIndex) {
+    if (existingMovieIndex !== -1) {
       user.watchlist.splice(existingMovieIndex, 1);
 
       await user.save();
@@ -51,4 +51,28 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+export async function GET(request: NextRequest) {
+  await dbConnect();
+
+  const { userId } = await request.json();
+
+  if (!userId) {
+    return Response.json({ message: "User Id is required" }, { status: 401 });
+  }
+
+  const user = await User.findById(userId);
+
+  if (!user) {
+    return Response.json({ message: "Invalid User ID" }, { status: 400 });
+  }
+
+  return Response.json(
+    {
+      message: "Fetched watchlisted movies successfully",
+      data: user.watchlist,
+    },
+    { status: 200 }
+  );
 }

@@ -32,12 +32,10 @@ function EmailTemplate({ username, userId, verifyCode }: TEmailTemplateProps) {
       <p
         style={{
           textAlign: "right",
-          borderLeft: "2px solid white",
           paddingInline: "8px",
-          display: "inline",
         }}
       >
-        From Watchlist Team.
+        | From Watchlist Team.
       </p>
     </div>
   );
