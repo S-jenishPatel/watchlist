@@ -29,7 +29,7 @@ type TLink = {
 };
 const links: TLink[] = [
   { title: "Home", link: "/user/home", isActive: false },
-  { title: "Wishlist", link: "/user/wishlist", isActive: false },
+  { title: "Watchlist", link: "/user/watchlist", isActive: false },
   { title: "Profile", link: "/user/profile", isActive: false },
 ];
 

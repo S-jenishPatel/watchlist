@@ -26,3 +26,10 @@ export const movieSchema = z.object({
   image: z.string(),
   releaseYear: z.number(),
 });
+
+export const userSchema = z.object({
+  id: z.string({ required_error: "User Id is required" }),
+  name: z.string({ required_error: "User name is required" }),
+  email: z.string(),
+  watchlist: z.array(z.string()).optional(),
+});

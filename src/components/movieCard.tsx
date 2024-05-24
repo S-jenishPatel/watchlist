@@ -19,16 +19,11 @@ import Axios from "axios";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 
-import { movieSchema } from "@/schemas";
+import { movieSchema, userSchema } from "@/schemas";
 
 type TMovieCardProps = {
   movie: z.infer<typeof movieSchema>;
-  user: {
-    id: string;
-    name: string;
-    email: string;
-    watchlist?: [string];
-  };
+  user: z.infer<typeof userSchema>;
 };
 
 function MovieCard({ movie, user }: TMovieCardProps) {
@@ -67,7 +62,7 @@ function MovieCard({ movie, user }: TMovieCardProps) {
   };
 
   return (
-    <Card className="hover:shadow">
+    <Card className="hover:shadow w-52">
       <CardContent className="p-0">
         <Image
           src={movie.image}
