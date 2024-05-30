@@ -1,11 +1,12 @@
 import MovieCard from "@/components/movieCard";
 
-import { ChevronRight } from "lucide-react";
 import Axios from "axios";
 import * as z from "zod";
 
 import { movieSchema, userSchema } from "@/schemas";
 import { IMoviesApi } from "@/models/movieApi.model";
+
+import { ChevronRight } from "lucide-react";
 
 export interface TMovieCardListProps extends IMoviesApi {
   user: z.infer<typeof userSchema>;
@@ -17,7 +18,7 @@ async function MovieCardList({
   params,
   user,
 }: TMovieCardListProps) {
-  let movies: z.infer<typeof movieSchema>[];
+  let movies: z.infer<typeof movieSchema>[] = [];
 
   const options = {
     method: "GET",
@@ -46,10 +47,10 @@ async function MovieCardList({
       });
     })
     .catch((e) => {
-      console.log(e);
+      console.log("Movies list error", e);
     });
 
-  if (movies!) {
+  if (movies) {
     return (
       <div>
         <h3 className="text-2xl font-medium my-4">

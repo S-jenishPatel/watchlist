@@ -44,7 +44,7 @@ async function WatchlistPage() {
       });
     })
     .catch((e) => {
-      console.log(e);
+      console.log("Watchlist page api error", e);
     });
 
   if (movies!) {

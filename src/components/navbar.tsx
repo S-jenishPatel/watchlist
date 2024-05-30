@@ -11,6 +11,9 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
+import { oswald } from "@/components/fonts";
+
+import logoutUser from "@/lib/logoutUser";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -19,7 +22,6 @@ import logo from "@/../public/watchlist logo cropped.png";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 
-import { oswald } from "@/components/fonts";
 import { usePathname } from "next/navigation";
 
 type TLink = {
@@ -30,8 +32,8 @@ type TLink = {
 const links: TLink[] = [
   { title: "Home", link: "/user/home", isActive: false },
   { title: "Watchlist", link: "/user/watchlist", isActive: false },
-  { title: "Profile", link: "/user/profile", isActive: false },
 ];
+// { title: "Profile", link: "/user/profile", isActive: false },
 
 function Navbar() {
   const path = usePathname();
@@ -74,6 +76,16 @@ function Navbar() {
               </NavigationMenuItem>
             );
           })}
+          <NavigationMenuItem>
+            <Button
+              className="mx-2"
+              onClick={async () => {
+                await logoutUser();
+              }}
+            >
+              Logout
+            </Button>
+          </NavigationMenuItem>
           <Button
             variant="outline"
             size="icon"
