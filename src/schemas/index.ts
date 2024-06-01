@@ -27,6 +27,10 @@ export const movieSchema = z.object({
   releaseYear: z.number(),
 });
 
+export const searchMovieSchema = z.object({
+  name: z.string(),
+});
+
 export const userSchema = z.object({
   id: z.string({ required_error: "User Id is required" }),
   name: z.string({ required_error: "User name is required" }),

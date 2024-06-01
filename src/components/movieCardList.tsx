@@ -50,7 +50,7 @@ async function MovieCardList({
       console.log("Movies list error", e);
     });
 
-  if (movies) {
+  if (movies.length > 0) {
     return (
       <div>
         <h3 className="text-2xl font-medium my-4">

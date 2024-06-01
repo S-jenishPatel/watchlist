@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import { oswald } from "@/components/fonts";
+import SearchBar from "@/components/searchBar";
 
 import logoutUser from "@/lib/logoutUser";
 
@@ -29,11 +30,11 @@ type TLink = {
   link: string;
   isActive: boolean;
 };
+
 const links: TLink[] = [
   { title: "Home", link: "/user/home", isActive: false },
   { title: "Watchlist", link: "/user/watchlist", isActive: false },
 ];
-// { title: "Profile", link: "/user/profile", isActive: false },
 
 function Navbar() {
   const path = usePathname();
@@ -43,7 +44,7 @@ function Navbar() {
   const { setTheme, theme } = useTheme();
 
   return (
-    <div className="flex justify-between border-b-2 p-4">
+    <div className="flex justify-between items-center border-b-2 p-4">
       <div className="flex gap-4 items-center">
         <Image src={logo} alt="Wishlist logo" className="w-14 rounded-full" />
         <Link
@@ -53,6 +54,7 @@ function Navbar() {
           Watchlist
         </Link>
       </div>
+      <SearchBar />
       <NavigationMenu>
         <NavigationMenuList>
           {links.map((link, index) => {
