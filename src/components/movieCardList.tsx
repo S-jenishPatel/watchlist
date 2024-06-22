@@ -1,12 +1,13 @@
 import MovieCard from "@/components/movieCard";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 import Axios from "axios";
 import * as z from "zod";
 
 import { movieSchema, userSchema } from "@/schemas";
-import { IMoviesApi } from "@/models/movieApi.model";
+import { IMoviesApi, searchMoviesApiData } from "@/models/movieApi.model";
 
-import { ChevronRight } from "lucide-react";
+import { AlertCircle, ChevronRight } from "lucide-react";
 
 export interface TMovieCardListProps extends IMoviesApi {
   user: z.infer<typeof userSchema>;
@@ -33,7 +34,7 @@ async function MovieCardList({
   const result = await Axios.request(options)
     .then((res) => {
       movies = res.data.results.map((movie: any, index: number) => {
-        if (movie.primaryImage) {
+        if (movie.primaryImage && movie.releaseYear) {
           return {
             id: movie.id,
             title: movie.titleText.text,
@@ -63,6 +64,16 @@ async function MovieCardList({
           ))}
         </div>
       </div>
+    );
+  } else if (url.includes(searchMoviesApiData.url)) {
+    return (
+      <Alert className="mt-16">
+        <AlertCircle className="h-5 w-5" />
+        <AlertTitle>No Results Found</AlertTitle>
+        <AlertDescription>
+          Enter a valid Movie Name to display results!
+        </AlertDescription>
+      </Alert>
     );
   } else {
     return;

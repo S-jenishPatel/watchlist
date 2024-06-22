@@ -24,7 +24,7 @@ export const movieSchema = z.object({
   id: z.string({ required_error: "Movie IMDB Id is required" }),
   title: z.string({ required_error: "Movie Title is required" }),
   image: z.string(),
-  releaseYear: z.number(),
+  releaseYear: z.number().nullable(),
 });
 
 export const searchMovieSchema = z.object({

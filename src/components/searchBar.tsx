@@ -11,6 +11,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
+import { useRouter } from "next/navigation";
+
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -24,6 +26,7 @@ function SearchBar() {
       name: "",
     },
   });
+
   const {
     register,
     handleSubmit,
@@ -31,17 +34,24 @@ function SearchBar() {
     formState: { errors, isSubmitting },
   } = form;
 
-  const onSubmit = async (data: z.infer<typeof searchMovieSchema>) => {};
+  const router = useRouter();
+
+  const onSubmit = async (data: z.infer<typeof searchMovieSchema>) => {
+    if (!data) {
+      router.push("/user/home");
+    }
+    router.push("/user/home/" + data.name.toString());
+  };
 
   return (
     <form
-      className="flex gap-2 items-center w-1/3"
+      className="flex gap-2 items-center w-1/2"
       onSubmit={handleSubmit(onSubmit)}
     >
       <Input
         {...register("name", { required: true })}
         type="text"
-        placeholder="Search any Movie or Tv show"
+        placeholder="Search any Movie or Tv Show"
       />
       <Button
         type="submit"

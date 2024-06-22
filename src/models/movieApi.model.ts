@@ -5,6 +5,8 @@ export interface IMoviesApi {
     list?: string;
     startYear?: string;
     page?: string;
+    exact?: string;
+    titleType?: string;
   };
 }
 export const moviesApiData: IMoviesApi[] = [
@@ -38,3 +40,12 @@ export const moviesApiData: IMoviesApi[] = [
     params: { list: "most_pop_series", startYear: "2000" },
   },
 ];
+
+export const searchMoviesApiData: IMoviesApi = {
+  listTitle: "Results",
+  url: "/titles/search/title/",
+  params: {
+    exact: "false",
+    titleType: "movie",
+  },
+};
