@@ -1,11 +1,15 @@
 import bgImage from "@/../public/Watchlist background.jpeg";
 import logo from "@/../public/watchlist logo cropped.png";
+
 import { oswald } from "@/components/fonts";
 import { Button } from "@/components/ui/button";
 
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
+
+import { MdCopyright } from "react-icons/md";
+import { FaGithub, FaXTwitter, FaLinkedin, FaInstagram } from "react-icons/fa6";
 
 export default function Home() {
   return (
@@ -43,6 +47,48 @@ export default function Home() {
             Get Started <ChevronRight />
           </Button>
         </Link>
+      </div>
+
+      <div className="absolute bottom-0 left-0 right-0 flex gap-4 items-center justify-end p-4 text-gray-400">
+        <p className="flex items-center">
+          <MdCopyright className="inline" />
+          2024 Watchlist, Inc.
+        </p>
+        <div className="flex gap-3">
+          <Link href="https://github.com/S-jenishPatel" target="_blank">
+            <FaGithub
+              size={"1.3rem"}
+              className="hover:cursor-pointer hover:scale-110 hover:text-gray-100 transition-transform"
+            />
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/jenish-patel-187b9326a"
+            target="_blank"
+          >
+            <FaLinkedin
+              size={"1.3rem"}
+              className="hover:cursor-pointer hover:scale-110 hover:text-gray-100 transition-transform"
+            />
+          </Link>
+          <Link
+            href="https://x.com/Jenish49350562?t=fq-Nbf9fiSP1gy9qZ_KqYw&s=08"
+            target="_blank"
+          >
+            <FaXTwitter
+              size={"1.3rem"}
+              className="hover:cursor-pointer hover:scale-110 hover:text-gray-100 transition-transform"
+            />
+          </Link>
+          <Link
+            href="https://www.instagram.com/_.j.e.n.i.s.h._/"
+            target="_blank"
+          >
+            <FaInstagram
+              size={"1.3rem"}
+              className="hover:cursor-pointer hover:scale-110 hover:text-gray-100 transition-transform"
+            />
+          </Link>
+        </div>
       </div>
     </main>
   );
