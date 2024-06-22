@@ -5,7 +5,6 @@ import { auth } from "@/auth";
 
 import { searchMoviesApiData } from "@/models/movieApi.model";
 
-import { useParams } from "next/navigation";
 import { Suspense } from "react";
 
 async function page({ params }: { params: { id: string } }) {

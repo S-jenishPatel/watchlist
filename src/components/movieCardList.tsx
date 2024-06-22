@@ -58,7 +58,7 @@ async function MovieCardList({
           {listTitle}
           <ChevronRight className="inline" size={"30"} />
         </h3>
-        <div className="flex gap-10 max-sm:gap-2 overflow-x-scroll pb-4">
+        <div className="flex gap-10 max-sm:gap-2 overflow-x-scroll pb-4 custom-scrollbar">
           {movies!.map((movie, index) => (
             <MovieCard key={index} movie={movie} user={user} />
           ))}

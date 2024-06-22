@@ -81,3 +81,11 @@ body,
   min-height: 100vh;
   overflow-x: hidden;
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+  @apply bg-secondary h-1.5 w-2;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-foreground rounded-md hover:cursor-pointer;
+}

@@ -1,9 +1,10 @@
-import Image from "next/image";
 import bgImage from "@/../public/Watchlist background.jpeg";
 import logo from "@/../public/watchlist logo cropped.png";
 import { oswald } from "@/components/fonts";
 import { Button } from "@/components/ui/button";
+
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 
 export default function Home() {

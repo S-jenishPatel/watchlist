@@ -1,15 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 
 import { useRouter } from "next/navigation";
 
@@ -65,8 +56,3 @@ function SearchBar() {
 }
 
 export default SearchBar;
-
-// <Input placeholder="Search any Movie or Tv show" />
-// <Button className="p-3 rounded-full">
-//   <Search size={"16px"} />
-// </Button>
