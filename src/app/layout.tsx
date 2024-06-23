@@ -9,7 +9,13 @@ import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Watchlist",
-  description: "Web app to save all your favourite Movies and Series",
+  description: "Save all your favourite Movies and Series at one place",
+  applicationName: "Watchlist",
+  authors: [
+    { name: "Jenish Patel S", url: "https://github.com/S-jenishPatel" },
+  ],
+  creator: "Jenish Patel S",
+  keywords: ["watchlist", "nextjs", "moives", "tv"],
 };
 
 export default function RootLayout({
