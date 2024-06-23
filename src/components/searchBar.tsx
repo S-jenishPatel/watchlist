@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 
 import { searchMovieSchema } from "@/schemas";
 
-function SearchBar() {
+function SearchBar({ className }: { className?: string | undefined }) {
   const form = useForm<z.infer<typeof searchMovieSchema>>({
     resolver: zodResolver(searchMovieSchema),
     defaultValues: {
@@ -35,10 +35,7 @@ function SearchBar() {
   };
 
   return (
-    <form
-      className="flex gap-2 items-center w-1/2"
-      onSubmit={handleSubmit(onSubmit)}
-    >
+    <form className={`${className}`} onSubmit={handleSubmit(onSubmit)}>
       <Input
         {...register("name", { required: true })}
         type="text"
@@ -47,7 +44,7 @@ function SearchBar() {
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="p-3 rounded-full"
+        className="hidden md:block p-3 rounded-full"
       >
         <Search size={"16px"} />
       </Button>
