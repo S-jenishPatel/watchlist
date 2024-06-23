@@ -13,17 +13,21 @@ import { FaGithub, FaXTwitter, FaLinkedin, FaInstagram } from "react-icons/fa6";
 
 export default function Home() {
   return (
-    <main className="relative h-screen w-screen overflow-hidden content-center text-white">
+    <main className="relative h-screen w-screen overflow-hidden text-white">
       {/* background image */}
       <div className="absolute inset-0 -z-20">
-        <Image src={bgImage} alt="Background Image" />
+        <Image
+          src={bgImage}
+          alt="Background Image"
+          className="h-full object-cover"
+        />
       </div>
 
       {/* black overlay filter */}
       <div className="absolute inset-0 -z-10 bg-black opacity-60"></div>
 
       {/* Logo */}
-      <div className="absolute top-4 left-10 flex items-center justify-center gap-4">
+      <div className="flex gap-4 items-center justify-center mt-10 md:justify-start md:m-4">
         <Image src={logo} className="w-16 rounded-full" alt="watchlist logo" />
         <h1 className={`text-5xl ${oswald.className} tracking-wide`}>
           Watchlist
@@ -31,25 +35,25 @@ export default function Home() {
       </div>
 
       {/* landing card */}
-      <div className="w-1/2 flex flex-col items-center gap-8 mx-auto p-6">
-        <h2 className="text-4xl font-medium text-center">
+      <div className="h-3/4 flex flex-col items-center justify-center gap-8 text-center">
+        <h2 className="text-4xl font-medium">
           Your Personal Entertainment Queue
         </h2>
-        <p className="text-center text-balance text-lg">
+        <p className="w-full md:w-1/2 px-2 md:text-balance text-lg">
           Discover and organize your favorite movies and TV shows at one place
           so you won't forget to watch them ever.
         </p>
-        <Link href="/login" className="w-1/4">
+        <Link href="/login" className="w-44">
           <Button
             variant={"secondary"}
-            className="w-full h-full text-base mt-2"
+            className="w-full h-full flex justify-center items-center text-base"
           >
             Get Started <ChevronRight />
           </Button>
         </Link>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 flex gap-4 items-center justify-end p-4 text-gray-400">
+      <div className="absolute bottom-0 left-0 right-0 flex gap-4 items-center justify-center md:justify-end p-4 text-gray-400">
         <p className="flex items-center">
           <MdCopyright className="inline" />
           2024 Watchlist, Inc.
