@@ -53,21 +53,27 @@ async function MovieCardList({
 
   if (movies.length > 0) {
     return (
-      <div>
-        <h3 className="text-2xl font-medium my-4">
+      <div className="mb-6">
+        <h3 className="text-2xl font-medium mb-2 md:mb-4">
           {listTitle}
           <ChevronRight className="inline" size={"30"} />
         </h3>
-        <div className="flex gap-10 max-sm:gap-2 overflow-x-scroll pb-4 custom-scrollbar">
+        <div className="flex gap-2 md:gap-10 overflow-x-scroll pb-2 md:pb-4 custom-scrollbar">
           {movies!.map((movie, index) => (
-            <MovieCard key={index} movie={movie} user={user} />
+            <MovieCard
+              key={index}
+              movie={movie}
+              user={user}
+              width="w-64"
+              height="h-96"
+            />
           ))}
         </div>
       </div>
     );
   } else if (url.includes(searchMoviesApiData.url)) {
     return (
-      <Alert className="mt-16">
+      <Alert className="md:mt-16">
         <AlertCircle className="h-5 w-5" />
         <AlertTitle>No Results Found</AlertTitle>
         <AlertDescription>

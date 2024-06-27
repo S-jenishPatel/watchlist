@@ -8,7 +8,9 @@ export default async function UserLayout({
   return (
     <>
       <Navbar />
-      <section className="px-28 max-sm:px-2">{children}</section>
+      <section className="min-h-[80vh] md:px-28 px-2 pt-4 bg-accent">
+        {children}
+      </section>
     </>
   );
 }

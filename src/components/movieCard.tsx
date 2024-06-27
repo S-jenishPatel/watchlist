@@ -24,9 +24,11 @@ import { movieSchema, userSchema } from "@/schemas";
 type TMovieCardProps = {
   movie: z.infer<typeof movieSchema>;
   user: z.infer<typeof userSchema>;
+  width?: string | undefined;
+  height?: string | undefined;
 };
 
-function MovieCard({ movie, user }: TMovieCardProps) {
+function MovieCard({ movie, user, width, height }: TMovieCardProps) {
   const [addToWatchlist, setAddToWatchlist] = useState(false);
   const [addingToWatchlist, setAddingToWatchlist] = useState(false);
 
@@ -60,20 +62,21 @@ function MovieCard({ movie, user }: TMovieCardProps) {
         setAddingToWatchlist(false);
       });
   };
-
+  // width={180}
+  // height={200}
   return (
-    <Card className="hover:shadow w-52">
-      <CardContent className="p-0">
+    <Card className={`${width} hover:shadow`}>
+      <CardContent className={`${width} p-0`}>
         <Image
           src={movie.image}
           alt={movie.title}
-          width={180}
-          height={200}
-          className="object-cover object-center w-full h-64 rounded"
+          width={400}
+          height={400}
+          className={`${height} object-cover object-center rounded`}
         />
       </CardContent>
       <CardFooter className="justify-between items-start gap-6 p-2">
-        <p className="font-medium w-28 max-sm:w-16 ">{movie.title}</p>
+        <p className="font-medium flex-1">{movie.title}</p>
         <Button
           variant={"outline"}
           size={"icon"}
