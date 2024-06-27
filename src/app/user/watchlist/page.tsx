@@ -50,15 +50,17 @@ async function WatchlistPage() {
   if (movies!) {
     return (
       <div>
-        <h3 className="text-2xl font-medium my-4">
-          Your Watchlisted Movies
-          <ChevronRight className="inline" size={"30"} />
-        </h3>
-        <div className="grid grid-cols-4 gap-10 max-sm:gap-2">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-2 sm:gap-6">
+          <h3 className="col-span-full mt-2 mb-2 sm:mb-0 text-2xl font-medium">
+            Your Watchlisted Movies
+            <ChevronRight className="inline" size={"30"} />
+          </h3>
           {movies!.map((movie, index) => (
             <MovieCard
               key={index}
               movie={movie}
+              width="w-full 2xl:max-w-72"
+              height="h-full"
               user={session?.user as z.infer<typeof userSchema>}
             />
           ))}
