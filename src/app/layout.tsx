@@ -7,6 +7,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/themeProvider";
 import { Toaster } from "@/components/ui/toaster";
 
+import { Analytics } from "@vercel/analytics/react";
+
 export const metadata: Metadata = {
   title: "Watchlist",
   description: "Save all your favourite Movies and Series at one place",
@@ -35,6 +37,7 @@ export default function RootLayout({
           {children}
         </ThemeProvider>
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );
